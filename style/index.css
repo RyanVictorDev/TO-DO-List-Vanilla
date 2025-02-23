@@ -70,6 +70,7 @@ nav button{
 
 .titleItem{
     display: flex;
+    font-weight: bold;
     align-items: center;
     justify-content: space-between;
 }
@@ -78,4 +79,22 @@ nav button{
     background-color: rgba(240, 248, 255, 0);
     border: none;
     cursor: pointer;
+}
+
+.description {
+    color: rgb(48, 48, 48);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.description.hidden {
+    max-height: 0;
+    opacity: 0;
+}
+
+.description:not(.hidden) {
+    max-height: 100px; /* Ajuste conforme necessário */
+    opacity: 1;
 }

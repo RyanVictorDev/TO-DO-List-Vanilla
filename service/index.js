@@ -3,69 +3,47 @@ axios.get('https://to-do-list-nodejs-43as.onrender.com/note')
     console.log('Notas:', response.data);
     
     const noteContainer = document.getElementById('note');
-    
     noteContainer.innerHTML = '';
 
-    for (let index = 0; index < response.data.length; index++) {
-        const element = response.data[index];
-        
-        if (element.finished == true) {
-            const noteDiv = document.createElement('div');
-            noteDiv.classList.add('noteItem');
+    response.data.forEach(element => {
+        const noteDiv = document.createElement('div');
+        noteDiv.classList.add(element.finished ? 'noteItem' : 'noteItemPending');
 
-            const titleDiv = document.createElement('div');
-            titleDiv.classList.add('titleItem');
-    
-            const title = document.createElement('p');
-            title.textContent = element.title;
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('titleItem');
 
-            const arrowBtn = document.createElement('button');
+        const title = document.createElement('p');
+        title.textContent = element.title;
 
-            const arrowIcon = document.createElement('i');
-            arrowIcon.classList.add('material-icons');
-            arrowIcon.textContent = 'keyboard_arrow_down';
+        const arrowBtn = document.createElement('button');
+        arrowBtn.classList.add('arrow-btn');
 
-            arrowBtn.appendChild(arrowIcon)
-    
-            // const description = document.createElement('p');
-            // description.textContent = element.description;
+        const arrowIcon = document.createElement('i');
+        arrowIcon.classList.add('material-icons');
+        arrowIcon.textContent = 'keyboard_arrow_down';
 
-            titleDiv.appendChild(title);
-            titleDiv.appendChild(arrowBtn);
-    
-            // Adicionando o título e descrição dentro do quadrado
-            noteDiv.appendChild(titleDiv);
-            // noteDiv.appendChild(description);
-    
-            noteContainer.appendChild(noteDiv);
-        } else {
-            const noteDiv = document.createElement('div');
-            noteDiv.classList.add('noteItemPending');
+        arrowBtn.appendChild(arrowIcon);
+        titleDiv.appendChild(title);
+        titleDiv.appendChild(arrowBtn);
+        noteDiv.appendChild(titleDiv);
 
-            const titleDiv = document.createElement('div');
-            titleDiv.classList.add('titleItem');
-    
-            const title = document.createElement('p');
-            title.textContent = element.title;
-    
-            const arrowBtn = document.createElement('button');
+        const description = document.createElement('p');
+        description.textContent = element.description;
+        description.classList.add('description', 'hidden');
 
-            const arrowIcon = document.createElement('i');
-            arrowIcon.classList.add('material-icons');
-            arrowIcon.textContent = 'keyboard_arrow_down';
+        noteDiv.appendChild(description);
+        noteContainer.appendChild(noteDiv);
 
-            arrowBtn.appendChild(arrowIcon)
-
-            titleDiv.appendChild(title);
-            titleDiv.appendChild(arrowBtn);
-    
-            // Adicionando o título e descrição dentro do quadrado
-            noteDiv.appendChild(titleDiv);
-    
-            noteContainer.appendChild(noteDiv);
-        }
-    }
+        titleDiv.addEventListener('click', () => {
+            showMore(description, arrowIcon);
+        });
+    });
   })
   .catch(error => {
     console.error('Erro ao buscar notas:', error);
   });
+
+function showMore(description, arrowIcon) {
+    description.classList.toggle('hidden');
+    arrowIcon.textContent = description.classList.contains('hidden') ? 'keyboard_arrow_down' : 'keyboard_arrow_up';
+}
