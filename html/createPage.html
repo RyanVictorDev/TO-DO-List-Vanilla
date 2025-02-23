@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/createPage.css">
+    <title>Criar Nota</title>
+</head>
+<body>
+    <header>
+        <div>
+            <a href="../index.html"><i class="material-icons">keyboard_arrow_left</i></a>
+            <h2>Criar notinha</h2>
+        </div>
+    </header>
+
+    <main>
+        <form id="noteForm">
+            <div>
+                <label for="title">Título:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div>
+                <label for="description">Descrição:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <div>
+                <button type="submit">Criar Nota</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../service/index.js"></script>
+</body>
+</html>

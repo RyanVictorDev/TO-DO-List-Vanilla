@@ -47,3 +47,27 @@ function showMore(description, arrowIcon) {
     description.classList.toggle('hidden');
     arrowIcon.textContent = description.classList.contains('hidden') ? 'keyboard_arrow_down' : 'keyboard_arrow_up';
 }
+
+const noteCreate = {
+    title: '',
+    description: ''
+};
+
+document.getElementById('noteForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const titleValue = document.getElementById('title').value;
+    const descriptionValue = document.getElementById('description').value;
+
+    noteCreate.title = titleValue;
+    noteCreate.description = descriptionValue;
+
+    console.log("Nota Criada:", noteCreate);
+
+    axios.post('https://to-do-list-nodejs-43as.onrender.com/note', noteCreate)
+    .then(
+        console.log("Sucesso")
+    ) .catch (e => {
+        console.log(e)
+    })
+});

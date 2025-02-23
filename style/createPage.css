@@ -1,0 +1,30 @@
+header div{
+    display: flex;
+    gap: 1rem;
+}
+
+main{
+    display: flex;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    gap: 2rem;
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
+}
+
+form input, textarea{
+    padding: 1rem;
+    background-color: rgb(235, 235, 235);
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 10px 10px 0 0px;
+}
