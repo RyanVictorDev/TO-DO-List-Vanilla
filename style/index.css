@@ -61,7 +61,7 @@ nav button{
     flex-direction: column;
     padding: 1rem 2rem;
     border-radius: 10px;
-    background-color: rgb(0, 255, 170);
+    background-color: #82FF7B;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
 }
@@ -71,7 +71,7 @@ nav button{
     flex-direction: column;
     padding: 1rem 2rem;
     border-radius: 10px;
-    background-color: red;
+    background-color: #BDBDBD;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
 }
@@ -97,12 +97,33 @@ nav button{
     opacity: 0;
 }
 
-.description.hidden {
+.actions{
+    display: flex;
+    width: 100%;
+    margin-inline: auto;
+    justify-content: space-evenly;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.deleteButton{
+    background-color: red;
+    color: wheat;
+}
+
+.finishButton{
+    background-color: green;
+    color: wheat;
+}
+
+.description.hidden, .actions.hidden {
     max-height: 0;
     opacity: 0;
 }
 
-.description:not(.hidden) {
-    max-height: 100px; /* Ajuste conforme necessário */
+.description:not(.hidden), .actions:not(.hidden){
+    /* margin-bottom: 0.5rem; */
+    max-height: 100px;
     opacity: 1;
 }
