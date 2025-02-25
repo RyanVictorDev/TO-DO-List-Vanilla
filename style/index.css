@@ -81,6 +81,12 @@ nav button{
     font-weight: bold;
     align-items: center;
     justify-content: space-between;
+    white-space: pre-wrap; 
+}
+
+.titleItem p{
+    word-wrap: break-word;
+    overflow: hidden;
 }
 
 .titleItem button{
@@ -95,6 +101,8 @@ nav button{
     overflow: hidden;
     transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
     opacity: 0;
+    white-space: pre-wrap; 
+    word-wrap: break-word;
 }
 
 .actions{
@@ -124,6 +132,6 @@ nav button{
 
 .description:not(.hidden), .actions:not(.hidden){
     /* margin-bottom: 0.5rem; */
-    max-height: 100px;
+    max-height: 1000px;
     opacity: 1;
 }

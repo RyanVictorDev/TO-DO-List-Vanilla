@@ -85,7 +85,8 @@ function showMore(description, actionsDiv, arrowIcon) {
  
 const noteCreate = {
     title: '',
-    description: ''
+    description: '',
+    userId: '1'
 };
 
 document.getElementById('noteForm').addEventListener('submit', function(event) {
@@ -100,9 +101,10 @@ document.getElementById('noteForm').addEventListener('submit', function(event) {
     console.log("Nota Criada:", noteCreate);
 
     axios.post('https://to-do-list-nodejs-43as.onrender.com/note', noteCreate)
-    .then(
+    .then( () => {
+        window.location.href = "/index.html",
         console.log("Sucesso")
-    ) .catch (e => {
+    }) .catch (e => {
         console.log(e)
     })
 });
@@ -122,9 +124,6 @@ function checkNote(id) {
     .then(() => {
         console.log('Sucesso!');
         fethNotes(); 
-        setTimeout(() => {
-            location.reload(); 
-        }, 500);
     })
     .catch(e => {
         console.log('Deu ruim', e);
