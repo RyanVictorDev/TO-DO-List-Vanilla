@@ -3,7 +3,7 @@ window.onload = () => {
 }
 
 function fethNotes() {
-    axios.get('https://to-do-list-nodejs-43as.onrender.com/note')
+    axios.get('https://to-do-list-nodejs-43as.onrender.com/note/user/1')
     .then(response => {
         console.log('Notas:', response.data);
     
