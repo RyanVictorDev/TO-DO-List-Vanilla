@@ -12,63 +12,126 @@ function fethNotes() {
 
         response.data.forEach(element => {
         const noteDiv = document.createElement('div');
-        noteDiv.classList.add(element.finished ? 'noteItem' : 'noteItemPending');
 
-        const titleDiv = document.createElement('div');
-        titleDiv.classList.add('titleItem');
+        if (element.finished) {
+            noteDiv.classList.add('noteItem')
 
-        const title = document.createElement('p');
-        title.textContent = element.title;
+            const titleDiv = document.createElement('div');
+            titleDiv.classList.add('titleItem');
 
-        const arrowBtn = document.createElement('button');
-        arrowBtn.classList.add('arrow-btn');
+            const title = document.createElement('p');
+            title.textContent = element.title;
 
-        const arrowIcon = document.createElement('i');
-        arrowIcon.classList.add('material-icons');
-        arrowIcon.textContent = 'keyboard_arrow_down';
+            const arrowBtn = document.createElement('button');
+            arrowBtn.classList.add('arrow-btn');
 
-        const description = document.createElement('p');
-        description.textContent = element.description;
-        description.classList.add('description', 'hidden');
+            const arrowIcon = document.createElement('i');
+            arrowIcon.classList.add('material-icons');
+            arrowIcon.textContent = 'keyboard_arrow_down';
 
-        const actionsDiv = document.createElement('div');
-        actionsDiv.classList.add('actions', 'hidden');
+            const description = document.createElement('p');
+            description.textContent = element.description;
+            description.classList.add('description', 'hidden');
 
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('deleteButton');
-        deleteButton.onclick = () => deleteNote(element.id);
+            const actionsDiv = document.createElement('div');
+            actionsDiv.classList.add('actions', 'hidden');
 
-        const deleteIcon = document.createElement('i');
-        deleteIcon.classList.add('material-icons');
-        deleteIcon.textContent = 'delete'
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('deleteButton');
+            deleteButton.onclick = () => deleteNote(element.id);
 
-        deleteButton.appendChild(deleteIcon);
-        actionsDiv.appendChild(deleteButton);
+            const deleteIcon = document.createElement('i');
+            deleteIcon.classList.add('material-icons');
+            deleteIcon.textContent = 'delete'
 
-        const finishButton = document.createElement('button');
-        finishButton.classList.add('finishButton');
-        finishButton.onclick = () => deleteNote(element.id);
+            deleteButton.appendChild(deleteIcon);
+            actionsDiv.appendChild(deleteButton);
 
-        const checkIcon = document.createElement('i');
-        checkIcon.classList.add('material-icons');
-        checkIcon.textContent = 'check';
+            const finishButton = document.createElement('button');
+            finishButton.classList.add('finishButton');
+            finishButton.onclick = () => deleteNote(element.id);
 
-        finishButton.appendChild(checkIcon);
-        actionsDiv.appendChild(finishButton);
-        finishButton.onclick = () => checkNote(element.id);
+            const checkIcon = document.createElement('i');
+            checkIcon.classList.add('material-icons');
+            checkIcon.textContent = 'close';
 
-        arrowBtn.appendChild(arrowIcon);
-        titleDiv.appendChild(title);
-        titleDiv.appendChild(arrowBtn);
-        noteDiv.appendChild(titleDiv);
+            finishButton.appendChild(checkIcon);
+            actionsDiv.appendChild(finishButton);
+            finishButton.onclick = () => checkNote(element.id);
 
-        noteDiv.appendChild(description);
-        noteDiv.appendChild(actionsDiv);
-        noteContainer.appendChild(noteDiv);
+            arrowBtn.appendChild(arrowIcon);
+            titleDiv.appendChild(title);
+            titleDiv.appendChild(arrowBtn);
+            noteDiv.appendChild(titleDiv);
 
-        titleDiv.addEventListener('click', () => {
-            showMore(description, actionsDiv, arrowIcon);
-        });
+            noteDiv.appendChild(description);
+            noteDiv.appendChild(actionsDiv);
+            noteContainer.appendChild(noteDiv);
+
+            titleDiv.addEventListener('click', () => {
+                showMore(description, actionsDiv, arrowIcon);
+            });
+        } else {
+            noteDiv.classList.add('noteItemPending')
+
+            const titleDiv = document.createElement('div');
+            titleDiv.classList.add('titleItem');
+
+            const title = document.createElement('p');
+            title.textContent = element.title;
+
+            const arrowBtn = document.createElement('button');
+            arrowBtn.classList.add('arrow-btn');
+
+            const arrowIcon = document.createElement('i');
+            arrowIcon.classList.add('material-icons');
+            arrowIcon.textContent = 'keyboard_arrow_down';
+
+            const description = document.createElement('p');
+            description.textContent = element.description;
+            description.classList.add('description', 'hidden');
+
+            const actionsDiv = document.createElement('div');
+            actionsDiv.classList.add('actions', 'hidden');
+
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('deleteButton');
+            deleteButton.onclick = () => deleteNote(element.id);
+
+            const deleteIcon = document.createElement('i');
+            deleteIcon.classList.add('material-icons');
+            deleteIcon.textContent = 'delete'
+
+            deleteButton.appendChild(deleteIcon);
+            actionsDiv.appendChild(deleteButton);
+
+            const finishButton = document.createElement('button');
+            finishButton.classList.add('finishButton');
+            finishButton.onclick = () => deleteNote(element.id);
+
+            const checkIcon = document.createElement('i');
+            checkIcon.classList.add('material-icons');
+            checkIcon.textContent = 'check';
+
+            finishButton.appendChild(checkIcon);
+            actionsDiv.appendChild(finishButton);
+            finishButton.onclick = () => checkNote(element.id);
+
+            arrowBtn.appendChild(arrowIcon);
+            titleDiv.appendChild(title);
+            titleDiv.appendChild(arrowBtn);
+            noteDiv.appendChild(titleDiv);
+
+            noteDiv.appendChild(description);
+            noteDiv.appendChild(actionsDiv);
+            noteContainer.appendChild(noteDiv);
+
+            titleDiv.addEventListener('click', () => {
+                showMore(description, actionsDiv, arrowIcon);
+            });
+        }
+
+        
         });
     })
     .catch(error => {
@@ -102,7 +165,7 @@ document.getElementById('noteForm').addEventListener('submit', function(event) {
 
     axios.post('https://to-do-list-nodejs-43as.onrender.com/note', noteCreate)
     .then( () => {
-        window.location.href = "/index.html",
+        window.location.href = "../index.html",
         console.log("Sucesso")
     }) .catch (e => {
         console.log(e)
